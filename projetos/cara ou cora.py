@@ -2,7 +2,7 @@ import random
 
 #Software para lançar uma moeda e obter seu valor: cara ou coroa
 
-def ThrowCoin(times): #função responsavel por lançar a moeda, seu parametro define quantos moedas serão arremessadas
+def ThrowCoin(times): #função responsavel por lançar a moeda, seu parametro define quantas moedas serão arremessadas
 
     coroa = 0
     cara = 0
@@ -11,7 +11,7 @@ def ThrowCoin(times): #função responsavel por lançar a moeda, seu parametro d
 
     for t in listTimes: # loop para calcular quantas moedas serão lançadas
 
-        x = random.randrange(1, 3)
+        x = random.randrange(1, 3) # função que entrega um número aleatório, começa a partir do primeiro valor, e para um numero antes do segundo valor
         if x == 1:
             cara += 1 # contabiliza quantas caras saíram
             print("cara")
