@@ -1,0 +1,1 @@
+#faça um algoritmo que leia o salario de funcionario e mostre seu novo salario, com 15% de aumento.
