@@ -21,4 +21,3 @@ x = lista.index(listaOrdenada[0]) # método index recebe um valor específico em
 y = lista.index(listaOrdenada[-1])
 
 print(f'e seus respectivos indicies são: {x}: {listaOrdenada[0]} e {y}: {listaOrdenada[-1]}')
-
