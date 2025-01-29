@@ -27,6 +27,4 @@ def calculo():
         res = num1 / num2
         print("o resultado da operação é: ", res)
 
-
-
 calculo()   
