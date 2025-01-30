@@ -23,4 +23,4 @@ def calcularMedia(qtdeNumeros):
 
     print(f"a media dos valores da lista >>> {mediaTotal}")
 
-calcularMedia(6)
+calcularMedia(5)
