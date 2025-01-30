@@ -1,0 +1,1 @@
+#Criar um programa simples: jogo de jokenpô (pedra, papel ou tesoura)
