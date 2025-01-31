@@ -5,7 +5,7 @@
 
 lista = list() # definição de uma lista
 
-for i in range(1,6): # cração de um loop que irá receber 5 valores e armazená-los respectivamente na lista
+for i in range(1,6): # criação de um loop que irá receber 5 valores e armazená-los respectivamente na lista
     t = int(input("digite um valor: "))
     lista.append(t) # append() função que adiciona um novo valor a lista, sempre adicionando no último índicie lista[0, 1, 2, 3 + 4: novo valor]
 

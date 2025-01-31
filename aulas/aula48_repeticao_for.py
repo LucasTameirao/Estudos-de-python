@@ -1,0 +1,1 @@
+#crie um programa que identifique se uma palavra é, ou não, um palíndromo.
