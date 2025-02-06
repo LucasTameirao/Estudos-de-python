@@ -10,4 +10,4 @@ razao = float(input("Digite a razao da PA >>> "))
 print('a sua PA é: ')
 
 for c in range(0, 10):
-    print(f'{primeiroTermo + razao * c}')
+    print(f'{round(primeiroTermo + razao * c, 2)}')
