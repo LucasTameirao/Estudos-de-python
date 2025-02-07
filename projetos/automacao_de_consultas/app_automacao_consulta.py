@@ -20,7 +20,7 @@ planilha_dados_consulta = openpyxl.load_workbook(caminho_planilha) # load.workbo
 
 sleep(2)
 
-# 2 - clicar no campo de oab e digitar o número do advogado
+# 2 - Clicar no campo de oab e digitar o número do advogado
 
 numero_oab = 259155
 
