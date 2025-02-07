@@ -102,7 +102,7 @@ for link in links_processos: # laço para passar por todos os link de link_proce
 
             # 6 - salvar os dados para uma planilha
 
-            planilha_dados_consulta.save('G:\\vs code codigos\\curso python\\projetos\\automacao_de_consultas\\dados_consulta - Copy.xlsx') # save() método utilizado para salvar o arquivo de planilha através do caminho do arquivo 
+            planilha_dados_consulta.save(caminho_planilha) # save() método utilizado para salvar o arquivo de planilha através do caminho do arquivo 
 
             """
             XPath Relativo: Utilize seletores que sejam menos dependentes de IDs dinâmicos. Por exemplo:
