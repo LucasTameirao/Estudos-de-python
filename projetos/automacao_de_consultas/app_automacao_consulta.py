@@ -113,4 +113,3 @@ for link in links_processos: # laço para passar por todos os link de link_proce
             driver.switch_to.window(janela_principal) # Volta para a janela principal
 
             # Automação finalizada
-
