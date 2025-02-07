@@ -84,7 +84,12 @@ for link in links_processos: # laço para passar por todos os link de link_proce
         if janela != janela_principal:
             driver.switch_to.window(janela)
             sleep(2)
+
+            # Expert composto
+            
             numero_processo = driver.find_elements(By.XPATH, "//div[@class='value col-sm-12 ']//div[@class='col-sm-12 ']")[0]
+
+            # Método contains()
             
             participantes = driver.find_elements(By.XPATH, "//tbody[contains(@id, 'processoPartesPoloAtivoResumidoList:tb')]//span[@class='text-bold']")
 
@@ -93,12 +98,14 @@ for link in links_processos: # laço para passar por todos os link de link_proce
             for p in participantes: #adiciona todos os participantes ativos do processo em uma lista
                 lista_participantes.append(p.text) # p.text é usado para que apenas o texto do elemento encontrado pelo xpath seja utilizado
 
-            planilha_pagina_processos = planilha_dados_consulta['Planilha1']
+            # manipulando o Excel:
+            
+            planilha_pagina_processos = planilha_dados_consulta['Planilha1'] # o uso de [] no final do objeto é para selecionar a página do excel que será manipulada
 
             if len(lista_participantes) == 1:
                 planilha_pagina_processos.append([numero_oab, numero_processo.text, lista_participantes[0]]) # adiciona valores às células da planilha de maneira sempre da esquerda para a direita
             else:
-                planilha_pagina_processos.append([numero_oab, numero_processo.text, ', '.join(lista_participantes)])
+                planilha_pagina_processos.append([numero_oab, numero_processo.text, ', '.join(lista_participantes)]) #o .join() adiciona o caractere no final de todos os elementos de uma lista
 
             # 6 - salvar os dados para uma planilha
 
