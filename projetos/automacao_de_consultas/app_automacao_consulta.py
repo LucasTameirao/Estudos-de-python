@@ -1,16 +1,12 @@
-
-# 6 - salvar os dados para uma planilha
-
-# 7 - repetir até finalizar todos os processos daquele advogado.
-
-
 from selenium import webdriver # modulo sobre automações na web, usando o google chrome
 
 from selenium.webdriver.common.by import By
 
-from time import sleep
+from time import sleep # função para poder pausar o código, (criar um timer)
 
 from selenium.webdriver.support.select import Select
+
+import openpyxl # módulo que permite a interação do python com tabelas do excel
 
 # 1 - entrar no site: https://pje-consulta-publica.tjmg.jus.br/
 
@@ -18,11 +14,15 @@ driver = webdriver.Chrome()
 
 driver.get('https://pje-consulta-publica.tjmg.jus.br/')
 
+caminho_planilha = 'G:\\vs code codigos\\curso python\\projetos\\automacao_de_consultas\\dados_consulta.xlsx' # variavel para facilitar o acesso ao caminho da planilha.xlsx
+
+planilha_dados_consulta = openpyxl.load_workbook(caminho_planilha) # load.workbook() é a função que atribui a uma variável as propriedades de uma planilha .xlsx
+
 sleep(2)
 
 # 2 - clicar no campo de oab e digitar o número do advogado
 
-numero_oab = 25915
+numero_oab = 259155
 
 # estrutura para o MÉTODO (pois só é chamado a partir de uma classe) find_element() == driver.find_element(By.XPATH, "//tag[@atributo='valor_do_atributo'"])
 
@@ -77,27 +77,40 @@ for link in links_processos: # laço para passar por todos os link de link_proce
     sleep(5)
 
     janelas_abertas = driver.window_handles # criar uma lista onde todos os valores são janelas diferentes
+
     
-    for janela in janelas_abertas:
+    
+    for janela in janelas_abertas: # execução de tarefas em várias janelas abertas
         if janela != janela_principal:
             driver.switch_to.window(janela)
             sleep(2)
             numero_processo = driver.find_elements(By.XPATH, "//div[@class='value col-sm-12 ']//div[@class='col-sm-12 ']")[0]
-            print(f"numero do processo: {numero_processo.text}")
+            
+            participantes = driver.find_elements(By.XPATH, "//tbody[contains(@id, 'processoPartesPoloAtivoResumidoList:tb')]//span[@class='text-bold']")
 
-            participantes = driver.find_elements(By.XPATH, "//span[contains(@class, 'processoPartesPoloAtivoResumidoList:0:j_id271')]//span[@class='text-bold']")[0]
             lista_participantes = []
 
             for p in participantes: #adiciona todos os participantes ativos do processo em uma lista
-                lista_participantes.append(p)
+                lista_participantes.append(p.text)
 
-            input()
-            print(f"nome do advogado: {nome_advogado.text}")
+            planilha_pagina_processos = planilha_dados_consulta['Planilha1']
+
+            if len(lista_participantes) == 1:
+                planilha_pagina_processos.append([numero_oab, numero_processo.text, lista_participantes[0]])
+            else:
+                planilha_pagina_processos.append([numero_oab, numero_processo.text, ', '.join(lista_participantes)])
+
+            # 6 - salvar os dados para uma planilha
+
+            planilha_dados_consulta.save('G:\\vs code codigos\\curso python\\projetos\\automacao_de_consultas\\dados_consulta - Copy.xlsx')
 
             """
             XPath Relativo: Utilize seletores que sejam menos dependentes de IDs dinâmicos. Por exemplo:
             elemento = driver.find_element_by_xpath("//div[contains(@id, 'processoPartesPoloPassivoResumidoList')]")
 
             """
+
             driver.switch_to.window(janela_principal)
-input('digite enter para fechar ')
+
+            # Automação finalizada
+
