@@ -66,7 +66,7 @@ sleep(5)
 
 # 5 - entrar em cada um dos processos e extrair: número do advogado, número do processo e nome dos participantes
 
-links_processos = driver.find_elements(By.XPATH, "//a[@title='Ver Detalhes']") # retorna uma lista com todos os a id='ver detalhes' da página
+links_processos = driver.find_elements(By.XPATH, "//a[@title='Ver Detalhes']") # retorna uma lista com todos os id='ver detalhes' da página
 
 janela_principal = driver.current_window_handle # define uma janela, nesse caso a janela que está em execução, foi definida numa variavel chamada de janela principal
 
@@ -91,18 +91,18 @@ for link in links_processos: # laço para passar por todos os link de link_proce
             lista_participantes = []
 
             for p in participantes: #adiciona todos os participantes ativos do processo em uma lista
-                lista_participantes.append(p.text)
+                lista_participantes.append(p.text) # p.text é usado para que apenas o texto do elemento encontrado pelo xpath seja utilizado
 
             planilha_pagina_processos = planilha_dados_consulta['Planilha1']
 
             if len(lista_participantes) == 1:
-                planilha_pagina_processos.append([numero_oab, numero_processo.text, lista_participantes[0]])
+                planilha_pagina_processos.append([numero_oab, numero_processo.text, lista_participantes[0]]) # adiciona valores às células da planilha de maneira sempre da esquerda para a direita
             else:
                 planilha_pagina_processos.append([numero_oab, numero_processo.text, ', '.join(lista_participantes)])
 
             # 6 - salvar os dados para uma planilha
 
-            planilha_dados_consulta.save('G:\\vs code codigos\\curso python\\projetos\\automacao_de_consultas\\dados_consulta - Copy.xlsx')
+            planilha_dados_consulta.save('G:\\vs code codigos\\curso python\\projetos\\automacao_de_consultas\\dados_consulta - Copy.xlsx') # save() método utilizado para salvar o arquivo de planilha através do caminho do arquivo 
 
             """
             XPath Relativo: Utilize seletores que sejam menos dependentes de IDs dinâmicos. Por exemplo:
@@ -110,7 +110,7 @@ for link in links_processos: # laço para passar por todos os link de link_proce
 
             """
 
-            driver.switch_to.window(janela_principal)
+            driver.switch_to.window(janela_principal) # Volta para a janela principal
 
             # Automação finalizada
 
