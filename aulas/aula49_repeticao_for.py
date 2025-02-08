@@ -1,6 +1,7 @@
 #Crie um programa que leia o ano de nascimento de 7 pessoas, no final, mostre quantas pessoas
 #atingiram a maioridade e quantos não atingiram. Considere maioridade 21 anos
 
+print(f"-=" * 69)
 
 maiordidade = 0
 menoridade = 0
@@ -18,3 +19,5 @@ print('contagem de pessoa')
 
 print(f'{maiordidade} pessoas são maiores de idade')
 print(f'{menoridade} pessoas são menores de idade')
+
+print(f"-=" * 69)

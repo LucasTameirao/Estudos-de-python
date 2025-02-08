@@ -1,5 +1,7 @@
 #crie um programa que identifique se uma palavra é, ou não, um palíndromo.
 
+print(f"-=" * 69)
+
 palavra = input('digite uma palavra: ')
 
 print('palavra:\n' + palavra[::-1].replace(" ", "")) #[::-1] siginifica que a string será lida de tras para frente, INCLUINDO ESPAÇO
@@ -11,3 +13,5 @@ if palavra[::-1].replace(" ","") == palavra.replace(' ', ''):
     print('essa palavra é um palíndromo')
 else:
     print('essa palavra não é um palíndromo')
+
+print(f"-=" * 69)
