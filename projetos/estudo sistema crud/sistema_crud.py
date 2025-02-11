@@ -1,4 +1,4 @@
-import mysql.connector
+import mysql.connector # pip install myslq-connector-python
 
 # um software desenvolvido para rodar um sistema CRUD
 
