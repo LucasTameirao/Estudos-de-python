@@ -2,6 +2,7 @@
 
 import random
 
+venceu = 0
 
 while True:
     while True:
@@ -23,9 +24,13 @@ while True:
 
     if soma % 2 == 0 and escolha == 'PAR':
         print('Você ganhou!')
+        venceu += 1
     elif soma % 2 != 0 and escolha == 'IMPAR':
         print('Você ganhou!')
+        venceu += 1
     else:
         print('Você perdeu!')
+        print(f'| venceu {venceu} jogo |')
         print('fim do jogo')
+        venceu = 0
         break
