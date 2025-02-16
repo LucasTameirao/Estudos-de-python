@@ -3,6 +3,10 @@ import tkinter.ttk
 
 window = tk.Tk()
 
+window.title('ComboBox')
+
+
+
 comboBox = tkinter.ttk.Combobox(window, state='readonly')
 
 comboBox['values'] = ('selecione', "masculino", 'feminino', 'não binário', 'outros', 'prefiro não informar')
