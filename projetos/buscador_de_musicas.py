@@ -4,31 +4,95 @@ from selenium.webdriver.common.by import By
 
 from selenium.webdriver.common.keys import Keys
 
+import tkinter as tk
+
 from time import sleep
 
-driver = webdriver.Chrome()
+import mysql.connector
 
-driver.get('https://music.youtube.com/')
+connection = mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password='',
+    database='registro_pesquisas'
+)
 
-pesquisa = driver.find_element(By.XPATH, "//input[@id='input']")
+cursor = connection.cursor()
 
-pesquisa.click()
+window = tk.Tk()
 
-sleep(1)
+window.geometry('400x400')
 
-pesquisa.send_keys('tribalistar voce é assim um sonho pra mim')
 
-pesquisa.send_keys(Keys.ENTER)
+def Start():
 
-sleep(4)
+    entry = music_search.get()
 
-video = driver.find_elements(By.XPATH, "//ytmusic-responsive-list-item-renderer[@class='style-scope ytmusic-shelf-renderer']//a[contains(@href, 'watch')]")
+    if not entry:
+        print('erro: campo de pesquisa vazio')
+    else:
+        print(entry)
 
-for i in range(0, len(video)):
-    print(video[i].text)
+        cursor.execute(f'INSERT INTO history (search) VALUES ("{entry}")')
 
-print(f"Número de elementos encontrados: {len(video)}")
+        connection.commit()
 
-video[0].click()
+        driver = webdriver.Chrome()
 
-input()
+        driver.get('https://music.youtube.com/')
+
+        pesquisa = driver.find_element(By.XPATH, "//input[@id='input']")
+
+        pesquisa.click()
+
+        sleep(1)
+
+        
+
+
+        pesquisa.send_keys(entry) # subtituir por uma entrada
+
+        pesquisa.send_keys(Keys.ENTER)
+
+        sleep(4)
+
+        video = driver.find_elements(By.XPATH, "//button[@class='yt-spec-button-shape-next yt-spec-button-shape-next--filled yt-spec-button-shape-next--mono yt-spec-button-shape-next--size-m yt-spec-button-shape-next--icon-leading yt-spec-button-shape-next--enable-backdrop-filter-experiment']")
+
+        video[0].click()
+        
+start_button = tk.Button(
+    window,
+    text='Iniciar Programa',
+    width=15,
+    command=Start
+)
+
+music_search = tk.Entry(
+    window,
+    width=15
+)
+
+label = tk.Label(
+    window,
+    text='clique aqui e espere a mágica acontecer'
+)
+
+start_button.place(
+    relx=0.5,
+    rely=0.5,
+    anchor='c'
+)
+
+label.place(
+    relx=0.5,
+    rely=0.3,
+    anchor='c'
+)
+
+music_search.place(
+    relx=0.5,
+    rely=0.4,
+    anchor='c'
+)
+
+window.mainloop()
